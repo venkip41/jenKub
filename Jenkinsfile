@@ -6,7 +6,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git url:'https://github.com/venkpoli/jenKub.git' , branch:'test'
+        git url:'https://github.com/venkip41/jenKub.git' , branch:'test'
       }
     }
 
