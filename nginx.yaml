@@ -2,31 +2,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
   labels:
-    app: nginx
+    app: web
+  name: mynginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: web
   template:
     metadata:
       labels:
-        app: nginx
+        app: web
     spec:
       containers:
-      - image: 172.31.21.173:5000/justme/nginx:1
-        imagePullPolicy: Always
-        name: nginx
+      - image: nginx
+        name: mynginx
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: nginx
-  name: nginx
+    app: web
+  name: mynginx
 spec:
   ports:
   - nodePort: 43334
@@ -34,5 +33,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: nginx
+    app: web
   type: NodePort
